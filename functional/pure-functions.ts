@@ -1,11 +1,12 @@
-/*
-    # Funções puras:
-        ## Não modificam variáveis externas
-        ## Não geram efeitos colaterias (Ter um resultado diferente por causa de variáveis externas que mudam ao longo prazo), já que não utilizam variáveis externa
+/*  
+    # Pure Function 
+        ## Funções puras:
+            ### Não modificam variáveis externas
+            ### Não geram efeitos colaterias (Ter um resultado diferente por causa de variáveis externas que mudam ao longo prazo), já que não utilizam variáveis externa
+    1       ### Deve ser possível determinar o resultado de saída.
 
-
-    # Observação:
-        O ideal é sempre utilizar funções puras.
+        ## Observação:
+            O ideal é sempre utilizar funções puras.
 
 */
 
