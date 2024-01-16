@@ -1,4 +1,4 @@
-import { filter, generate, map, mergeMap, tap, of, interval, takeWhile, skip, take, Observable, combineLatest, from, groupBy, first, last} from 'rxjs';
+import { filter, generate, map, mergeMap, tap, of, interval, takeWhile, skip, take, Observable, combineLatest, from, groupBy, first, last, retry, catchError, throwError, timer} from 'rxjs';
 
 //Crie um Observable que emita os números de 1 a 10 e multiplique cada valor por 2
 
@@ -84,3 +84,29 @@ from(people).pipe(groupBy(x => x.name)).subscribe({
         value.pipe(first()).forEach(console.log);
     }
 });
+
+console.log('Tentando fazer uma requisição fracassada');
+
+async function getPosts() {
+    try {
+
+        const req = await fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        })
+
+        const json = await req.json();
+
+        return json as { userId: number; id: number; title: string; body: string; }[];
+
+    } catch (ex: any) {
+        throw ex;
+    }
+}
+
+
+from(getPosts())
+.pipe(
+    retry(3), 
+    catchError(error => throwError(() => error.message))
+).subscribe(v => console.log(v));
