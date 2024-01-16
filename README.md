@@ -4,4 +4,6 @@ Repositório que contém algumas dicas relacionadas a programação funcional e 
 
 ## Operadores
 
-[Creation operators](CREATION-OPERATORS.md)
+[Operadores de criação](CREATION-OPERATORS.md)
+
+[Operadores de criação com junção](JOIN-CREATION-OPERATORS.md)
