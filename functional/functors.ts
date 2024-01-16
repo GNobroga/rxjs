@@ -6,3 +6,22 @@
         original.
 
 */
+
+const numbers = [1, 2, 3, 4, 5] as number[];
+
+console.log(numbers.map(value => value * 2));
+
+////////////////////
+
+
+function mapToNewValue(value: number) {
+    return {
+        value,
+        map(fnc: (value: number) => number) {
+            return mapToNewValue(fnc(this.value));
+        }
+    }
+}
+
+
+console.log(mapToNewValue(2).map(value => value * 100).value);
