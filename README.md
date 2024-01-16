@@ -7,3 +7,5 @@ Repositório que contém algumas dicas relacionadas a programação funcional e 
 [Operadores de criação](CREATION-OPERATORS.md)
 
 [Operadores de criação com junção](JOIN-CREATION-OPERATORS.md)
+
+Link para mais referências -> https://rxjs.dev/guide/operators
