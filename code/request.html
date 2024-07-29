@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        .btn {
+            cursor: pointer;
+            outline: none;
+            border: none;
+            padding: 1rem 2rem;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border-radius: 1rem;
+            transform: translateX(-25%);
+
+            span {
+                display: none;
+            }
+
+            span:first-child {
+                display: block;
+            }
+
+            &.request {
+                background-color: aqua;
+            }
+
+            &.loading {
+                background-color: orange;
+
+                span:first-child {
+                    display: none;
+                }
+
+                span:nth-child(2) {
+                    display: block;
+                }
+
+                &:hover {
+                    background-color: red;
+                    color: white;
+
+                    span:nth-child(2) {
+                        display: none;
+                    }
+
+                    span:nth-child(3) {
+                        display: block;
+                    }
+                }
+            }
+
+            &.cancel {
+                background-color: red;
+                color: white;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+    <div>
+        <button class="btn request">
+            <span>Fazer Requisição</span>
+            <span>Carregando...</span>
+            <span>Cancelar</span>
+        </button>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/rxjs@7.8.1/dist/bundles/rxjs.umd.min.js"></script>
+    <script>
+
+        const btn = document.querySelector('.btn');
+        const request$ = rxjs.fromEvent(btn, 'click');
+        const cancel$ = rxjs.fromEvent(btn, 'click');
+
+        const clearButtonClasses = () => {
+            btn.classList = [];
+            btn.classList.add('btn');
+        }
+
+        const labelButtonLoading = () => {
+            clearButtonClasses();
+            btn.classList.add('loading');
+        };
+
+        const labelButtonMakeRequest = () => {
+            clearButtonClasses();
+            btn.classList.add('request');
+        };
+
+        request$.pipe(
+            rxjs.tap(labelButtonLoading),
+            rxjs.exhaustMap(() => {
+                return cancel$.pipe(
+                        rxjs.tap(labelButtonMakeRequest),
+                        rxjs.first()
+                    )
+            }),
+        ).subscribe();
+    
+
+    </script>
+</body>
+</html>

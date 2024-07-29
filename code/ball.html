@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .rectangle {
+            width: 200px; height: 200px;
+            box-sizing: border-box;
+            background: red;
+            color: white;
+            padding: 1rem;
+            position: relative;
+            border-radius: 50%;
+
+            &:hover {
+                border: 1px solid blue;
+                transition: all ease-in;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="rectangle"></div>
+    <script src="https://cdn.jsdelivr.net/npm/rxjs@7.8.1/dist/bundles/rxjs.umd.min.js"></script>
+    <script src="operator.js"></script>
+</body>
+</html>
